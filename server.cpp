@@ -1,7 +1,3 @@
-// UDP Pinger
-
-// Must have this server running before you can run the UDP Pinger Client code
-
 #include <iostream>
 #include <stdlib.h> 
 #include <unistd.h> 
@@ -18,6 +14,7 @@
 int main() { 
 	int sockfd, n;
 	socklen_t len;
+	clock_t clientX, clientY;
 	char buffer[1024];
 	struct sockaddr_in servaddr, cliaddr; 
 	
@@ -44,7 +41,13 @@ int main() {
 		n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 
 			MSG_WAITALL, ( struct sockaddr *) &cliaddr, &len);
 		buffer[n] = '\0';
-
+		//Check which arrived first
+		string msg = string(buffer)
+		if(msg.find("Client X") != string::npos)
+			clientX = time(0);
+		else if(msg.find("Client Y") != string::npos)
+			clientY = time(0);
+		double total = (double)difftime(ClientX, ClientY);
 		//If a random number in the range of 0 to 10 is less than 4,
 		//we consider the packet lost and do not respond
 		if (rand()%10 < 4) continue;
@@ -53,5 +56,9 @@ int main() {
 		sendto(sockfd, (const char *)buffer, strlen(buffer), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
 	}
+	if(total < 0)
+		cout << "X was recieved before Y" << endl;
+	else
+		cout << "Y was recieved before X" << endl;
 	return 0; 
 } 
