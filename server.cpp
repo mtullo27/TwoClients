@@ -37,22 +37,29 @@ int main() {
 	
 	// random generator
 	srand(time(0));
-
-        while (1) {
+	
+	//keep track of messages arriving
+	int count = 0;
+	
+        while (count!=2) {
 		//Receive the client packet along with the address it is coming from
 		n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 
 			MSG_WAITALL, ( struct sockaddr *) &cliaddr, &len);
 		buffer[n] = '\0';
 		//Check which arrived first
-		if(buffer[7] == 'X')
+		if(buffer[7] == 'X'){
 			clientX = time(0);
-		else
+			count++;
+		}
+		else{
 			clientY = time(0);
-		total = (double)difftime(clientX, clientY);
+			count++;
+		}
 		//the server responds
 		sendto(sockfd, (const char *)buffer, strlen(buffer), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
 	}
+	total = (double)difftime(clientX, clientY);
 	if(total < 0)
 		cout << "X was recieved before Y" << endl;
 	else
