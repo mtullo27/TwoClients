@@ -46,7 +46,7 @@ int main(int args, char *argv[]) {
 	start = time(0);
 
 	//Send message to server
-	sendto(sockfd, (const string) message, message.length(), MSG_CONFIRM, (const struct sockaddr *) &servaddr, len);
+	sendto(sockfd, (const string*) message, message.length(), MSG_CONFIRM, (const struct sockaddr *) &servaddr, len);
 	//Recieve message form server
 	int n;
 	n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), MSG_WAITALL, (struct sockaddr *) &servaddr, &len);
