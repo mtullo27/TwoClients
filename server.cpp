@@ -39,6 +39,7 @@ int main() {
 	// random generator
 	srand(time(0));
 	
+	string message;
 	
         while (1) {
 		//Receive the client packet along with the address it is coming from
@@ -53,11 +54,11 @@ int main() {
 			clientY = time(0);
 		total = (double)difftime(clientX, clientY);
 		if(total < 0)
-			ack = "X was recieved before Y";
+			message = "X was recieved before Y";
 		else
-			ack = "Y was recieved before X";
-		break;
+			message = "Y was recieved before X";
 		//the server responds
+		strcpy(ack, message.c_str());
 		sendto(sockfd, (const char *)ack, strlen(buffer), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
 	}
