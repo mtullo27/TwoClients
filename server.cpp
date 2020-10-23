@@ -8,8 +8,9 @@
 #include <arpa/inet.h> 
 #include <netinet/in.h> 
 
-#define PORT	 1027
+#define PORT	 1080
 
+using namespace std;
 
 int main() { 
 	int sockfd, n;
