@@ -19,7 +19,7 @@ int main(int args, char *argv[]) {
 	clock_t start, end;
 	socklen_t len;
 	char buffer[1024];
-	string message = argv[2];
+	char * message = argv[2];
 	struct sockaddr_in servaddr, cliaddr; 
 	
 	// Create a UDP socket
@@ -46,7 +46,7 @@ int main(int args, char *argv[]) {
 	start = time(0);
 
 	//Send message to server
-	sendto(sockfd, message, message.length(), MSG_CONFIRM, (const struct sockaddr *) &servaddr, len);
+	sendto(sockfd, (const char*)message, message.length(), MSG_CONFIRM, (const struct sockaddr *) &servaddr, len);
 	//Recieve message form server
 	int n;
 	n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), MSG_WAITALL, (struct sockaddr *) &servaddr, &len);
