@@ -19,7 +19,7 @@ int main() {
 	clock_t clientX, clientY;
 	double total = 0;
 	char buffer[1024];
-	char * ack;
+	char ack[1024];
 	struct sockaddr_in servaddr, cliaddr; 
 	
 	// Create a UDP socket
