@@ -18,6 +18,7 @@ int main() {
 	clock_t clientX, clientY;
 	double total = 0;
 	char buffer[1024];
+	char * ack;
 	struct sockaddr_in servaddr, cliaddr; 
 	
 	// Create a UDP socket
@@ -38,34 +39,26 @@ int main() {
 	// random generator
 	srand(time(0));
 	
-	//keep track of messages arriving
-	int count = 0;
 	
-        while (count!=2) {
+        while (1) {
 		//Receive the client packet along with the address it is coming from
 		cout << count << endl;
 		n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), 
 			MSG_WAITALL, ( struct sockaddr *) &cliaddr, &len);
 		buffer[n] = '\0';
 		//Check which arrived first
-		if(buffer[7] == 'X'){
+		if(buffer[7] == 'X')
 			clientX = time(0);
-			count++;
-		}
-		else{
+		else
 			clientY = time(0);
-			count++;
-		}
-		if(count == 2){
-			total = (double)difftime(clientX, clientY);
-			if(total < 0)
-				cout << "X was recieved before Y" << endl;
-			else
-				cout << "Y was recieved before X" << endl;
-			break;
-		}
+		total = (double)difftime(clientX, clientY);
+		if(total < 0)
+			ack = "X was recieved before Y";
+		else
+			ack = "Y was recieved before X";
+		break;
 		//the server responds
-		sendto(sockfd, (const char *)buffer, strlen(buffer), 
+		sendto(sockfd, (const char *)ack, strlen(buffer), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
 	}
 
