@@ -60,7 +60,8 @@ int main() {
 			if(total < 0)
 				cout << "X was recieved before Y" << endl;
 			else
-				cout << "Y was recieved before X" << endl;	
+				cout << "Y was recieved before X" << endl;
+			break;
 		}
 		//the server responds
 		sendto(sockfd, (const char *)buffer, strlen(buffer), 
