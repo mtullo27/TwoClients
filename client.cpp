@@ -53,7 +53,7 @@ int main(int args, char *argv[]) {
 	//See how long has passed
 	double total = (double)difftime(time(0), start);
 	//Check time taken
-	cout << "Ping Number " << count << "Round Trip Time " << end << " Seconds" << endl;
+	cout << "Round Trip Time " << total << " Seconds" << endl;
 
 	return 0; 
 } 
