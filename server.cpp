@@ -58,7 +58,9 @@ int main() {
 		else
 			message = "Y was recieved before X";
 		//the server responds
-		strcpy(buffer, message.c_str());
+		for(int i = 0; i<message.length(); i++)
+			ack[i] = message[i];
+		ack[message.length()] = '\0';
 		sendto(sockfd, (const char *)buffer, strlen(buffer), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
 		break;
