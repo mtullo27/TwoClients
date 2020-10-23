@@ -51,7 +51,7 @@ int main(int args, char *argv[]) {
 	int n;
 	n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), MSG_WAITALL, (struct sockaddr *) &servaddr, &len);
 	buffer[n] = '\0';
-	string ack = string(buffer)
+	string ack = string(buffer);
 	cout << message << endl;
 	cout << ack << endl;
 
