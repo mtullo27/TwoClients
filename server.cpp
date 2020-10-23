@@ -47,7 +47,7 @@ int main() {
 			clientX = time(0);
 		else if(msg.find("Client Y") != string::npos)
 			clientY = time(0);
-		double total = (double)difftime(ClientX, ClientY);
+		double total = (double)difftime(clientX, clientY);
 		//If a random number in the range of 0 to 10 is less than 4,
 		//we consider the packet lost and do not respond
 		if (rand()%10 < 4) continue;
