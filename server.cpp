@@ -42,17 +42,12 @@ int main() {
 			MSG_WAITALL, ( struct sockaddr *) &cliaddr, &len);
 		buffer[n] = '\0';
 		//Check which arrived first
-		string msg = string(buffer)
-		if(msg.find("Client X") != string::npos)
+		if(buffer[7] == 'X')
 			clientX = time(0);
-		else if(msg.find("Client Y") != string::npos)
+		else
 			clientY = time(0);
 		double total = (double)difftime(clientX, clientY);
-		//If a random number in the range of 0 to 10 is less than 4,
-		//we consider the packet lost and do not respond
-		if (rand()%10 < 4) continue;
-
-		//Otherwise, the server responds
+		//the server responds
 		sendto(sockfd, (const char *)buffer, strlen(buffer), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
 	}
