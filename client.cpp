@@ -50,8 +50,7 @@ int main(int args, char *argv[]) {
 	sendto(sockfd, (const char*)message, strlen(message), MSG_CONFIRM, (const struct sockaddr *) &servaddr, len);
 	//Recieve message form server
 	int n;
-	cout << message << end;
-	n = recvfrom(sockfd, (char *)message, sizeof(buffer), MSG_WAITALL, (struct sockaddr *) &servaddr, &len);
+	n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), MSG_WAITALL, (struct sockaddr *) &servaddr, &len);
 	buffer[n] = '\0';
 	ack = string(buffer);
 	cout << message << endl;
