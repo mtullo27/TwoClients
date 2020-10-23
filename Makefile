@@ -6,5 +6,4 @@ p1: server.cpp
 p2: client
 	g++ -g client.cpp - client
 clean:
-	rm -rf server
-	rm -rf client
+	rm -rf server client
