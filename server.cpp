@@ -55,14 +55,17 @@ int main() {
 			clientY = time(0);
 			count++;
 		}
+		if(count == 2){
+			total = (double)difftime(clientX, clientY);
+			if(total < 0)
+				cout << "X was recieved before Y" << endl;
+			else
+				cout << "Y was recieved before X" << endl;	
+		}
 		//the server responds
 		sendto(sockfd, (const char *)buffer, strlen(buffer), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
 	}
-	total = (double)difftime(clientX, clientY);
-	if(total < 0)
-		cout << "X was recieved before Y" << endl;
-	else
-		cout << "Y was recieved before X" << endl;
+
 	return 0; 
 } 
