@@ -15,6 +15,7 @@ int main() {
 	int sockfd, n;
 	socklen_t len;
 	clock_t clientX, clientY;
+	double total = 0;
 	char buffer[1024];
 	struct sockaddr_in servaddr, cliaddr; 
 	
@@ -46,7 +47,7 @@ int main() {
 			clientX = time(0);
 		else
 			clientY = time(0);
-		double total = (double)difftime(clientX, clientY);
+		total = (double)difftime(clientX, clientY);
 		//the server responds
 		sendto(sockfd, (const char *)buffer, strlen(buffer), 
 			MSG_CONFIRM, (const struct sockaddr *) &cliaddr, len);
