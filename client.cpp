@@ -51,6 +51,8 @@ int main(int args, char *argv[]) {
 	int n;
 	n = recvfrom(sockfd, (char *)buffer, sizeof(buffer), MSG_WAITALL, (struct sockaddr *) &servaddr, &len);
 	buffer[n] = '\0';
+	cout << message << endl;
+	cout << buffer << endl;
 	//See how long has passed
 	double total = (double)difftime(time(0), start);
 	//Check time taken
