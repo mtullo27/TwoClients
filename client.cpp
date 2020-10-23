@@ -18,7 +18,8 @@ int main(int args, char *argv[]) {
 	int sockfd, count;
 	clock_t start, end;
 	socklen_t len;
-	char buffer[1024] = argv[2];
+	char buffer[1024];
+	buffer = argv[2];
 	struct sockaddr_in servaddr, cliaddr; 
 	
 	// Create a UDP socket
